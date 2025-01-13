@@ -33,6 +33,14 @@ public class ApiOperationLogAspect {
     public void apiOperationLog() {
     }
 
+    /**
+     * 环绕通知，记录 API 入参和出参的操作日志；
+     * 这里还使用了 MDC，同个请求生成并使用同一个 TraceId，方便后续排查日志
+     *
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
     @Around("apiOperationLog()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
         try {
