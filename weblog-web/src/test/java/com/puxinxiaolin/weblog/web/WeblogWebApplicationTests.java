@@ -4,12 +4,41 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+
 @Slf4j
 @SpringBootTest
 class WeblogWebApplicationTests {
 
     @Test
     void contextLoads() {
+    }
+
+    @Test
+    void testAddSevenDaysWithLocalDate() {
+        LocalDate today = LocalDate.now();
+        System.out.println("今天的日期: " + today);
+
+        // 获取七天后的日期
+        LocalDate sevenDaysLater = today.plusDays(7);
+
+        System.out.println("七天后的日期: " + sevenDaysLater);
+    }
+
+    @Test
+    void testAddSevenDaysWithDate() {
+        Date today = new Date();
+        System.out.println("今天的日期: " + today);
+
+        // 创建Calendar
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.DATE, 7);
+        Date sevenDaysLater = calendar.getTime();
+
+        System.out.println("七天后的日期: " + sevenDaysLater);
     }
 
     @Test

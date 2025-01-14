@@ -3,6 +3,7 @@ package com.puxinxiaolin.weblog.web.controller;
 import com.puxinxiaolin.weblog.common.aspect.ApiOperationLog;
 import com.puxinxiaolin.weblog.common.enums.ResponseCodeEnum;
 import com.puxinxiaolin.weblog.common.exception.BizException;
+import com.puxinxiaolin.weblog.common.utils.JsonUtil;
 import com.puxinxiaolin.weblog.common.utils.Response;
 import com.puxinxiaolin.weblog.web.model.User;
 import io.swagger.annotations.Api;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.stream.Collectors;
 
 /**
@@ -26,6 +30,21 @@ import java.util.stream.Collectors;
 @Slf4j
 @Api(tags = "首页模块")
 public class TestController {
+
+    @PostMapping("/test5")
+    @ApiOperationLog(description = "测试接口5")
+    @ApiOperation(value = "测试日期的序列化器")
+    public Response test5(@RequestBody @Validated User user) {
+        log.info(JsonUtil.toJsonString(user));
+
+        // 设置三种日期字段值
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdateDate(LocalDate.now());
+        user.setTime(LocalTime.now());
+
+        return Response.success(user);
+    }
+
 
     @ApiOperation(value = "测试接口4")
     @PostMapping("/test4")

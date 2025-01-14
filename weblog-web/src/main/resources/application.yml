@@ -2,9 +2,5 @@ server:
   port: 8080
 spring:
   profiles:
+    # 默认激活 dev 环境
     active: dev
-  jackson:
-    # 设置后台返参，返回非空字段
-#    default-property-inclusion: non_null
-    # 设置日期格式
-    date-format: yyyy-MM-dd HH:mm:ss
