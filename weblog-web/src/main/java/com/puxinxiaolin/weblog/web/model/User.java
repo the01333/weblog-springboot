@@ -2,10 +2,7 @@ package com.puxinxiaolin.weblog.web.model;
 
 import lombok.Data;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 /**
  * @description: User 实体类
@@ -15,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class User {
 
-    @NotNull(message = "用户名不能为空")
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     @NotNull(message = "性别不能为空")
