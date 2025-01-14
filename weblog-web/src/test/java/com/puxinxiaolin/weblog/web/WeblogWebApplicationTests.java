@@ -21,8 +21,8 @@ class WeblogWebApplicationTests {
     @Test
     void testInsert() {
         UserDO userDO = UserDO.builder()
-                .username("程序员小林")
-                .password("lyclyclyc666")
+                .username("小林")
+                .password("$2a$10$17r1EE4xWiYKmmCqQaAjdeb64G68iZZic7E9e2AOZy8LaCwhiDSWi")
                 .createTime(new Date())
                 .updateTime(new Date())
                 .isDeleted(false)

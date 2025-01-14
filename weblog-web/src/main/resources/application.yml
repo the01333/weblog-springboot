@@ -4,3 +4,8 @@ spring:
   profiles:
     # 默认激活 dev 环境
     active: dev
+jwt:
+  # 签发人
+  issuer: xiaolin
+  # 密钥
+  secret: u9KJsGNZmQy+C1rCAtABnu2U04UPQBkt/pf5Sp0nntRMmB3Xz/5M9RjFZP8kN92mArc0civ8I39b0JVtrDTq3w==

@@ -14,6 +14,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -29,6 +30,7 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 @Api(tags = "首页模块")
+@RequestMapping("/admin")
 public class TestController {
 
     @PostMapping("/test5")
