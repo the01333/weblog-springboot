@@ -1,9 +1,12 @@
 package com.puxinxiaolin.weblog.web;
 
+import com.puxinxiaolin.weblog.common.domain.dos.UserDO;
+import com.puxinxiaolin.weblog.common.domain.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,6 +14,21 @@ import java.util.Date;
 @Slf4j
 @SpringBootTest
 class WeblogWebApplicationTests {
+
+    @Resource
+    private UserMapper userMapper;
+
+    @Test
+    void testInsert() {
+        UserDO userDO = UserDO.builder()
+                .username("小林同学")
+                .password("lyc666")
+                .createTime(new Date())
+                .updateTime(new Date())
+                .isDeleted(false)
+                .build();
+        userMapper.insert(userDO);
+    }
 
     @Test
     void contextLoads() {
