@@ -1,11 +1,16 @@
 package com.puxinxiaolin.weblog.jwt.service.impl;
 
+import com.puxinxiaolin.weblog.common.domain.dos.UserDO;
+import com.puxinxiaolin.weblog.common.domain.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * @description: 自定义 UserDetailsService 实现类
@@ -17,14 +22,21 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    @Resource
+    private UserMapper userMapper;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // TODO 从数据库中查询
+        // 从数据库中查询
+        UserDO userDO = userMapper.findByUsername(username);
 
-        // 暂时先写死，密码为 xiaolin, 这里填写的密文，数据库中也是存储此种格式
+        if (Objects.isNull(userDO)) {
+            throw new UsernameNotFoundException("该用户不存在");
+        }
+
         // authorities 用于指定角色，这里写死为 ADMIN 管理员
-        return User.withUsername("xiaolin")
-                .password("$2a$10$17r1EE4xWiYKmmCqQaAjdeb64G68iZZic7E9e2AOZy8LaCwhiDSWi")
+        return User.withUsername(userDO.getUsername())
+                .password(userDO.getPassword())
                 .authorities("ADMIN")
                 .build();
     }

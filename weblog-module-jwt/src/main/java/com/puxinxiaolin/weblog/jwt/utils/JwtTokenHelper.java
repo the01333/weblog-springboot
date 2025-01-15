@@ -65,7 +65,8 @@ public class JwtTokenHelper implements InitializingBean {
     public String generateToken(String username) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime expireTime = now.plusHours(1);
-        return Jwts.builder().setSubject(username)
+        return Jwts.builder()
+                .setSubject(username)
                 .setIssuer(issuer).signWith(key)
                 .setIssuedAt(Date.from(now.atZone(ZoneId.systemDefault()).toInstant()))
                 .setExpiration(Date.from(expireTime.atZone(ZoneId.systemDefault()).toInstant()))

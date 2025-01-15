@@ -24,7 +24,6 @@ import java.util.Date;
 public class UserDO {
 
     @TableId(type = IdType.AUTO)
-    @TableField(value = "id")
     private Long id;
 
     @TableField(value = "username")

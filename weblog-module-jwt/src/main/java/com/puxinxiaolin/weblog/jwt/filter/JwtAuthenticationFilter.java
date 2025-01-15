@@ -2,7 +2,7 @@ package com.puxinxiaolin.weblog.jwt.filter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.puxinxiaolin.weblog.common.exception.UsernameOrPasswordNullException;
+import com.puxinxiaolin.weblog.jwt.exception.UsernameOrPasswordNullException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -48,6 +48,9 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
         String password = passwordNode.textValue();
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-        return getAuthenticationManager().authenticate(usernamePasswordAuthenticationToken);
+        // 触发 Security 的身份验证管理器执行身份验证，并返回验证结果
+        return getAuthenticationManager()
+                .authenticate(usernamePasswordAuthenticationToken);
     }
+
 }
