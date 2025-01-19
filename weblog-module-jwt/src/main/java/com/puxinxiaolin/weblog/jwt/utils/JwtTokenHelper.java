@@ -63,7 +63,7 @@ public class JwtTokenHelper implements InitializingBean {
     /**
      * 生成 Token
      *
-     * @param username
+     * @param username 用户名
      * @return
      */
     public String generateToken(String username) {

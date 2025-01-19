@@ -30,6 +30,9 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
 
     // ----------- 权限异常状态码 -----------
     UNAUTHORIZED("20002", "无访问权限，请先登录！"),
+
+    // ----------- 演示账号异常状态码 -----------
+    FORBIDDEN("20004", "演示账号仅支持查询操作！"),
     ;
 
     // 异常码
