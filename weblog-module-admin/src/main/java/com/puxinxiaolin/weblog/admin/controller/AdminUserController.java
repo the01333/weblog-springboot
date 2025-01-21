@@ -1,6 +1,6 @@
 package com.puxinxiaolin.weblog.admin.controller;
 
-import com.puxinxiaolin.weblog.admin.model.vo.UpdateAdminUserPasswordRequestVO;
+import com.puxinxiaolin.weblog.admin.model.vo.user.UpdateAdminUserPasswordRequestVO;
 import com.puxinxiaolin.weblog.admin.service.AdminUserService;
 import com.puxinxiaolin.weblog.common.aspect.ApiOperationLog;
 import com.puxinxiaolin.weblog.common.utils.Response;
@@ -28,5 +28,13 @@ public class AdminUserController {
     public Response updatePassword(@Validated @RequestBody UpdateAdminUserPasswordRequestVO updateAdminUserPasswordRequestVO) {
         return adminUserService.updatePassword(updateAdminUserPasswordRequestVO);
     }
+
+    @PostMapping("/user/info")
+    @ApiOperation(value = "获取用户信息")
+    @ApiOperationLog(description = "获取用户信息")
+    public Response findUserInfo() {
+        return adminUserService.findUserInfo();
+    }
+
 
 }
