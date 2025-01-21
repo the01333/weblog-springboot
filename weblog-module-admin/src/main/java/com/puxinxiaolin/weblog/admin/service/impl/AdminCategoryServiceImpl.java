@@ -3,6 +3,7 @@ package com.puxinxiaolin.weblog.admin.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.puxinxiaolin.weblog.admin.model.vo.category.AddCategoryRequestVO;
+import com.puxinxiaolin.weblog.admin.model.vo.category.DeleteCategoryRequestVO;
 import com.puxinxiaolin.weblog.admin.model.vo.category.FindCategoryPageListRequestVO;
 import com.puxinxiaolin.weblog.admin.model.vo.category.FindCategoryPageListResponseVO;
 import com.puxinxiaolin.weblog.admin.service.AdminCategoryService;
@@ -102,6 +103,18 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
         }
 
         return PageResponse.success(categoryDOPage, categoryPageListResponseVOList);
+    }
+
+    /**
+     * 删除分类
+     *
+     * @param deleteCategoryRequestVO
+     * @return
+     */
+    @Override
+    public Response deleteCategory(DeleteCategoryRequestVO deleteCategoryRequestVO) {
+        categoryMapper.deleteById(deleteCategoryRequestVO.getId());
+        return Response.success();
     }
 
 }

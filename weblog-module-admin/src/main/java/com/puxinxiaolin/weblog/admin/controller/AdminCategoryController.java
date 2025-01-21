@@ -1,6 +1,7 @@
 package com.puxinxiaolin.weblog.admin.controller;
 
 import com.puxinxiaolin.weblog.admin.model.vo.category.AddCategoryRequestVO;
+import com.puxinxiaolin.weblog.admin.model.vo.category.DeleteCategoryRequestVO;
 import com.puxinxiaolin.weblog.admin.model.vo.category.FindCategoryPageListRequestVO;
 import com.puxinxiaolin.weblog.admin.service.AdminCategoryService;
 import com.puxinxiaolin.weblog.common.aspect.ApiOperationLog;
@@ -23,6 +24,14 @@ public class AdminCategoryController {
 
     @Resource
     private AdminCategoryService adminCategoryService;
+
+    @PostMapping("/category/delete")
+    @ApiOperation(value = "删除分类")
+    @ApiOperationLog(description = "删除分类")
+    public Response deleteCategory(@RequestBody @Validated DeleteCategoryRequestVO deleteCategoryRequestVO) {
+        return adminCategoryService.deleteCategory(deleteCategoryRequestVO);
+    }
+
 
     @PostMapping("/category/list")
     @ApiOperation(value = "分类分页数据获取")
