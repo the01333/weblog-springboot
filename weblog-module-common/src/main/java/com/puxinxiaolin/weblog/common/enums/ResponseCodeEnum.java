@@ -33,6 +33,9 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
 
     // ----------- 演示账号异常状态码 -----------
     FORBIDDEN("20004", "演示账号仅支持查询操作！"),
+
+    // ----------- 用户不存在异常状态码 -----------
+    USERNAME_NOT_FOUND("20003", "该用户不存在"),
     ;
 
     // 异常码

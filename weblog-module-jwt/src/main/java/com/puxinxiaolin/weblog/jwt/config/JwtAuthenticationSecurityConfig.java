@@ -51,6 +51,7 @@ public class JwtAuthenticationSecurityConfig extends SecurityConfigurerAdapter<D
         provider.setUserDetailsService(userDetailsService);
         // 设置加密算法
         provider.setPasswordEncoder(passwordEncoder);
+
         httpSecurity.authenticationProvider(provider);
         // 将这个过滤器添加到 UsernamePasswordAuthenticationFilter 之前执行
         httpSecurity.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
