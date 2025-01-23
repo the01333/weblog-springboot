@@ -11,11 +11,10 @@ import com.puxinxiaolin.weblog.common.domain.dos.CategoryDO;
 import com.puxinxiaolin.weblog.common.domain.mapper.CategoryMapper;
 import com.puxinxiaolin.weblog.common.enums.ResponseCodeEnum;
 import com.puxinxiaolin.weblog.common.exception.BizException;
+import com.puxinxiaolin.weblog.common.model.vo.SelectResponseVO;
 import com.puxinxiaolin.weblog.common.utils.PageResponse;
 import com.puxinxiaolin.weblog.common.utils.Response;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -31,6 +30,30 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
 
     @Resource
     private CategoryMapper categoryMapper;
+
+    /**
+     * 查询所有分类
+     *
+     * @return
+     */
+    @Override
+    public Response findCategorySelectList() {
+        // 查询所有分类
+        List<CategoryDO> categoryDOList = categoryMapper.selectList(null);
+
+        // DO -> VO
+        List<SelectResponseVO> selectResponseVOList = null;
+        if (!CollectionUtils.isEmpty(categoryDOList)) {
+            // 将分类 ID 作为 Value 值，将分类名称作为 label 展示
+            selectResponseVOList = categoryDOList.stream()
+                    .map(categoryDO -> SelectResponseVO.builder()
+                            .label(categoryDO.getName())
+                            .value(categoryDO.getId())
+                            .build())
+                    .collect(Collectors.toList());
+        }
+        return Response.success(selectResponseVOList);
+    }
 
     /**
      * 添加分类
@@ -63,32 +86,16 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
      * @return
      */
     @Override
-    public PageResponse findCategoryList(FindCategoryPageListRequestVO findCategoryPageListRequestVO) {
-        // 获取当前页、以及每页需要展示的数量
-        long current = findCategoryPageListRequestVO.getCurrent();
-        long size = findCategoryPageListRequestVO.getSize();
-
-        // 分页对象(查询第几页、每页多少数据)
-        Page<CategoryDO> page = new Page<>(current, size);
-
-        // 构建查询条件
-        LambdaQueryWrapper<CategoryDO> wrapper = new LambdaQueryWrapper<>();
-
+    public PageResponse findCategoryPageList(FindCategoryPageListRequestVO findCategoryPageListRequestVO) {
         String name = findCategoryPageListRequestVO.getName();
         LocalDate startDate = findCategoryPageListRequestVO.getStartDate();
         LocalDate endDate = findCategoryPageListRequestVO.getEndDate();
+        long current = findCategoryPageListRequestVO.getCurrent();
+        long size = findCategoryPageListRequestVO.getSize();
 
-        wrapper
-                .like(StringUtils.isNotBlank(findCategoryPageListRequestVO.getName()), CategoryDO::getName, name.trim())
-                .ge(Objects.nonNull(startDate), CategoryDO::getCreateTime, startDate)
-                .le(Objects.nonNull(endDate), CategoryDO::getCreateTime, endDate)
-                .orderByDesc(CategoryDO::getCreateTime);
+        Page<CategoryDO> page = categoryMapper.selectPageList(current, size, name, startDate, endDate);
 
-        // 执行分页查询
-        Page<CategoryDO> categoryDOPage = categoryMapper.selectPage(page, wrapper);
-
-        List<CategoryDO> categoryDOList = categoryDOPage.getRecords();
-
+        List<CategoryDO> categoryDOList = page.getRecords();
         // DO -> VO
         List<FindCategoryPageListResponseVO> categoryPageListResponseVOList = null;
         if (!CollectionUtils.isEmpty(categoryDOList)) {
@@ -102,7 +109,7 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
                     .collect(Collectors.toList());
         }
 
-        return PageResponse.success(categoryDOPage, categoryPageListResponseVOList);
+        return PageResponse.success(page, categoryPageListResponseVOList);
     }
 
     /**

@@ -9,6 +9,13 @@ import com.puxinxiaolin.weblog.common.utils.Response;
 public interface AdminCategoryService {
 
     /**
+     * 查询所有分类
+     *
+     * @return
+     */
+    Response findCategorySelectList();
+
+    /**
      * 添加分类
      *
      * @param addCategoryRequestVO
@@ -22,7 +29,7 @@ public interface AdminCategoryService {
      * @param findCategoryPageListRequestVO
      * @return
      */
-    PageResponse findCategoryList(FindCategoryPageListRequestVO findCategoryPageListRequestVO);
+    PageResponse findCategoryPageList(FindCategoryPageListRequestVO findCategoryPageListRequestVO);
 
     /**
      * 删除分类

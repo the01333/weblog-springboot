@@ -25,6 +25,13 @@ public class AdminCategoryController {
     @Resource
     private AdminCategoryService adminCategoryService;
 
+    @PostMapping("/category/select/list")
+    @ApiOperation(value = "分类 Select 下拉列表数据获取")
+    @ApiOperationLog(description = "分类 Select 下拉列表数据获取")
+    public Response findCategorySelectList() {
+        return adminCategoryService.findCategorySelectList();
+    }
+
     @PostMapping("/category/delete")
     @ApiOperation(value = "删除分类")
     @ApiOperationLog(description = "删除分类")
@@ -36,8 +43,8 @@ public class AdminCategoryController {
     @PostMapping("/category/list")
     @ApiOperation(value = "分类分页数据获取")
     @ApiOperationLog(description = "分类分页数据获取")
-    public PageResponse findCategoryList(@RequestBody @Validated FindCategoryPageListRequestVO findCategoryPageListRequestVO) {
-        return adminCategoryService.findCategoryList(findCategoryPageListRequestVO);
+    public PageResponse findCategoryPageList(@RequestBody @Validated FindCategoryPageListRequestVO findCategoryPageListRequestVO) {
+        return adminCategoryService.findCategoryPageList(findCategoryPageListRequestVO);
     }
 
 

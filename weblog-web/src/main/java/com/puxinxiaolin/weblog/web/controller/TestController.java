@@ -71,13 +71,13 @@ public class TestController {
         return Response.success();
     }
 
-    @ApiOperation(value = "测试接口2")
-    @PostMapping("/test2")
-    @ApiOperationLog(description = "测试异常接口")
-    public Response test2(@RequestBody @Validated User user,
-                          BindingResult bindingResult) {
-        throw new BizException(ResponseCodeEnum.PRODUCT_NOT_FOUND);
-    }
+//    @ApiOperation(value = "测试接口2")
+//    @PostMapping("/test2")
+//    @ApiOperationLog(description = "测试异常接口")
+//    public Response test2(@RequestBody @Validated User user,
+//                          BindingResult bindingResult) {
+//        throw new BizException(ResponseCodeEnum.PRODUCT_NOT_FOUND);
+//    }
 
     @ApiOperation(value = "测试接口")
     @PostMapping("/test")
