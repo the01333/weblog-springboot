@@ -2,6 +2,7 @@ package com.puxinxiaolin.weblog.admin.service.impl;
 
 import com.google.common.collect.Lists;
 import com.puxinxiaolin.weblog.admin.convert.ArticleConvert;
+import com.puxinxiaolin.weblog.admin.model.vo.article.DeleteArticleRequestVO;
 import com.puxinxiaolin.weblog.admin.model.vo.article.PublishArticleRequestVO;
 import com.puxinxiaolin.weblog.admin.service.AdminArticleService;
 import com.puxinxiaolin.weblog.common.domain.dos.*;
@@ -80,6 +81,32 @@ public class AdminArticleServiceImpl implements AdminArticleService {
         // TODO 4. 保存文章关联的标签集合
         List<String> tagList = publishArticleRequestVO.getTagList();
         insertTagList(articleId, tagList);
+
+        return Response.success();
+    }
+
+    /**
+     * 删除文章
+     *
+     * @param deleteArticleRequestVO
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Response deleteArticle(DeleteArticleRequestVO deleteArticleRequestVO) {
+        Long articleId = deleteArticleRequestVO.getId();
+
+        // 1. 删除文章
+        articleMapper.deleteById(articleId);
+
+        // 2. 删除文章内容
+        articleContentMapper.deleteByArticleId(articleId);
+
+        // 3. 删除文章-分类关联记录
+        articleCategoryRelMapper.deleteByArticleId(articleId);
+
+        // 4. 删除文章-标签关联记录
+        articleTagRelMapper.deleteByArticleId(articleId);
 
         return Response.success();
     }

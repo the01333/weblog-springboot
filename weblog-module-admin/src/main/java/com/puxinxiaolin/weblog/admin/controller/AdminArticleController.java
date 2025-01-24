@@ -1,5 +1,6 @@
 package com.puxinxiaolin.weblog.admin.controller;
 
+import com.puxinxiaolin.weblog.admin.model.vo.article.DeleteArticleRequestVO;
 import com.puxinxiaolin.weblog.admin.model.vo.article.PublishArticleRequestVO;
 import com.puxinxiaolin.weblog.admin.service.AdminArticleService;
 import com.puxinxiaolin.weblog.common.aspect.ApiOperationLog;
@@ -29,6 +30,14 @@ public class AdminArticleController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Response publishArticle(@RequestBody @Validated PublishArticleRequestVO publishArticleRequestVO) {
         return adminArticleService.publishArticle(publishArticleRequestVO);
+    }
+
+    @PostMapping("/delete")
+    @ApiOperation(value = "文章删除")
+    @ApiOperationLog(description = "文章删除")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Response deleteArticle(@RequestBody @Validated DeleteArticleRequestVO deleteArticleRequestVO) {
+        return adminArticleService.deleteArticle(deleteArticleRequestVO);
     }
 
 }
