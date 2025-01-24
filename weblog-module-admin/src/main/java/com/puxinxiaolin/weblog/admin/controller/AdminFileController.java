@@ -11,14 +11,14 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/admin/file")
 @Api(tags = "Admin 文件模块")
 public class AdminFileController {
 
     @Resource
     private AdminFileService adminFileService;
 
-    @PostMapping("/file/upload")
+    @PostMapping("/upload")
     @ApiOperation(value = "上传文件")
     @ApiOperationLog(description = "上传文件")
     public Response uploadFile(@RequestParam MultipartFile file) {

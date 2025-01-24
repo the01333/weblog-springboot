@@ -20,34 +20,34 @@ import javax.annotation.Resource;
 
 @RestController
 @Api(tags = "Admin 标签模块")
-@RequestMapping("/admin")
+@RequestMapping("/admin/tag")
 public class AdminTagController {
 
     @Resource
     private AdminTagService adminTagService;
 
-    @PostMapping("/tag/add")
+    @PostMapping("/add")
     @ApiOperation(value = "添加标签")
     @ApiOperationLog(description = "添加标签")
     public Response addTag(@Validated @RequestBody AddTagRequestVO addTagRequestVO) {
         return adminTagService.addTag(addTagRequestVO);
     }
 
-    @PostMapping("/tag/list")
+    @PostMapping("/list")
     @ApiOperation(value = "标签分页数据获取")
     @ApiOperationLog(description = "标签分页数据获取")
     public PageResponse findTagPageList(@Validated @RequestBody FindTagPageListRequestVO findTagPageListRequestVO) {
         return adminTagService.findTagPageList(findTagPageListRequestVO);
     }
 
-    @PostMapping("/tag/delete")
+    @PostMapping("/delete")
     @ApiOperation(value = "删除标签")
     @ApiOperationLog(description = "删除标签")
     public Response deleteTag(@Validated @RequestBody DeleteTagRequestVO deleteTagRequestVO) {
         return adminTagService.deleteTag(deleteTagRequestVO);
     }
 
-    @PostMapping("/category/select")
+    @PostMapping("/select")
     @ApiOperation(value = "标签模糊查询")
     @ApiOperationLog(description = "标签模糊查询")
     public Response searchTag(@Validated @RequestBody SearchTagRequestVO searchTagRequestVO) {
