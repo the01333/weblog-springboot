@@ -1,5 +1,6 @@
 package com.puxinxiaolin.weblog.admin.convert;
 
+import com.puxinxiaolin.weblog.admin.model.vo.blogSettings.FindBlogSettingsResponseVO;
 import com.puxinxiaolin.weblog.admin.model.vo.blogSettings.UpdateBlogSettingsRequestVO;
 import com.puxinxiaolin.weblog.common.domain.dos.BlogSettingsDO;
 import org.mapstruct.Mapper;
@@ -20,5 +21,13 @@ public interface BlogSettingsConvert {
      * @return
      */
     BlogSettingsDO convertUpdateBlogSettingsRequestVOToBlogSettingsDO(UpdateBlogSettingsRequestVO updateBlogSettingsRequestVO);
+
+    /**
+     * BlogSettingsDO -> FindBlogSettingsResponseVO
+     *
+     * @param blogSettingsDO
+     * @return
+     */
+    FindBlogSettingsResponseVO convertBlogSettingsDOToFindBlogSettingsResponseVO(BlogSettingsDO blogSettingsDO);
 
 }

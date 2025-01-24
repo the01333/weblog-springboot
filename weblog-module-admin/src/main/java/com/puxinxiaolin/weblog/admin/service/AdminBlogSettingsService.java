@@ -17,4 +17,10 @@ public interface AdminBlogSettingsService {
      */
     Response updateBlogSettings(UpdateBlogSettingsRequestVO updateBlogSettingsRequestVO);
 
+    /**
+     * 获取博客设置详情
+     *
+     * @return
+     */
+    Response findDetail();
 }
