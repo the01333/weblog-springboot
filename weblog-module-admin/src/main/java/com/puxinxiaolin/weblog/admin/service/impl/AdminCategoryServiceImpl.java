@@ -1,13 +1,14 @@
 package com.puxinxiaolin.weblog.admin.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.puxinxiaolin.weblog.admin.model.vo.category.AddCategoryRequestVO;
 import com.puxinxiaolin.weblog.admin.model.vo.category.DeleteCategoryRequestVO;
 import com.puxinxiaolin.weblog.admin.model.vo.category.FindCategoryPageListRequestVO;
 import com.puxinxiaolin.weblog.admin.model.vo.category.FindCategoryPageListResponseVO;
 import com.puxinxiaolin.weblog.admin.service.AdminCategoryService;
+import com.puxinxiaolin.weblog.common.domain.dos.ArticleCategoryRelDO;
 import com.puxinxiaolin.weblog.common.domain.dos.CategoryDO;
+import com.puxinxiaolin.weblog.common.domain.mapper.ArticleCategoryRelMapper;
 import com.puxinxiaolin.weblog.common.domain.mapper.CategoryMapper;
 import com.puxinxiaolin.weblog.common.enums.ResponseCodeEnum;
 import com.puxinxiaolin.weblog.common.exception.BizException;
@@ -30,6 +31,9 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
 
     @Resource
     private CategoryMapper categoryMapper;
+
+    @Resource
+    private ArticleCategoryRelMapper articleCategoryRelMapper;
 
     /**
      * 查询所有分类
@@ -120,7 +124,16 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
      */
     @Override
     public Response deleteCategory(DeleteCategoryRequestVO deleteCategoryRequestVO) {
-        categoryMapper.deleteById(deleteCategoryRequestVO.getId());
+        Long categoryId = deleteCategoryRequestVO.getId();
+
+        // 校验该分类下是否已经有文章，若有，则提示需要先删除分类下所有文章，才能删除
+        ArticleCategoryRelDO articleCategoryRelDO = articleCategoryRelMapper.selectOneByCategoryId(categoryId);
+        if (Objects.nonNull(articleCategoryRelDO)) {
+            log.warn("==> 此分类下包含文章，无法删除，categoryId: {}", categoryId);
+            throw new BizException(ResponseCodeEnum.CATEGORY_CAN_NOT_DELETE);
+        }
+
+        categoryMapper.deleteById(categoryId);
         return Response.success();
     }
 

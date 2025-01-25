@@ -47,11 +47,18 @@ public class AdminTagController {
         return adminTagService.deleteTag(deleteTagRequestVO);
     }
 
-    @PostMapping("/select")
+    @PostMapping("/search")
     @ApiOperation(value = "标签模糊查询")
     @ApiOperationLog(description = "标签模糊查询")
     public Response searchTag(@Validated @RequestBody SearchTagRequestVO searchTagRequestVO) {
         return adminTagService.searchTag(searchTagRequestVO);
+    }
+
+    @PostMapping("/select/list")
+    @ApiOperation(value = "查询标签 Select 列表数据")
+    @ApiOperationLog(description = "查询标签 Select 列表数据")
+    public Response findTagSelectList() {
+        return adminTagService.findTagSelectList();
     }
 
 }
