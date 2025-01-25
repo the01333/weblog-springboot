@@ -1,6 +1,5 @@
 package com.puxinxiaolin.weblog.admin.service;
 
-import com.puxinxiaolin.weblog.admin.model.vo.user.FindUserInfoRequestVO;
 import com.puxinxiaolin.weblog.admin.model.vo.user.UpdateAdminUserPasswordRequestVO;
 import com.puxinxiaolin.weblog.common.utils.Response;
 

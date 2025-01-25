@@ -23,6 +23,6 @@ public class ArticleCategoryRelDO {
     private Long articleId;
 
     @TableField(value = "category_id")
-    private String categoryId;
+    private Long categoryId;
 
 }

@@ -1,7 +1,6 @@
 package com.puxinxiaolin.weblog.admin.controller;
 
-import com.puxinxiaolin.weblog.admin.model.vo.article.DeleteArticleRequestVO;
-import com.puxinxiaolin.weblog.admin.model.vo.article.PublishArticleRequestVO;
+import com.puxinxiaolin.weblog.admin.model.vo.article.*;
 import com.puxinxiaolin.weblog.admin.service.AdminArticleService;
 import com.puxinxiaolin.weblog.common.aspect.ApiOperationLog;
 import com.puxinxiaolin.weblog.common.utils.Response;
@@ -38,6 +37,28 @@ public class AdminArticleController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Response deleteArticle(@RequestBody @Validated DeleteArticleRequestVO deleteArticleRequestVO) {
         return adminArticleService.deleteArticle(deleteArticleRequestVO);
+    }
+
+    @PostMapping("/list")
+    @ApiOperation(value = "查询文章分页数据")
+    @ApiOperationLog(description = "查询文章分页数据")
+    public Response findArticlePageList(@RequestBody @Validated FindArticlePageListRequestVO findArticlePageListRequestVO) {
+        return adminArticleService.findArticlePageList(findArticlePageListRequestVO);
+    }
+
+    @PostMapping("/detail")
+    @ApiOperation(value = "查询文章详情")
+    @ApiOperationLog(description = "查询文章详情")
+    public Response findArticleDetail(@RequestBody @Validated FindArticleDetailRequestVO findArticleDetailRequestVO) {
+        return adminArticleService.findArticleDetail(findArticleDetailRequestVO);
+    }
+
+    @PostMapping("/update")
+    @ApiOperation(value = "更新文章")
+    @ApiOperationLog(description = "更新文章")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Response updateArticle(@RequestBody @Validated UpdateArticleRequestVO updateArticleRequestVO) {
+        return adminArticleService.updateArticle(updateArticleRequestVO);
     }
 
 }
