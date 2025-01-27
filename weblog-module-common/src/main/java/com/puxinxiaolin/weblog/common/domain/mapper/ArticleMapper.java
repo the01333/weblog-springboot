@@ -28,7 +28,7 @@ public interface ArticleMapper extends BaseMapper<ArticleDO> {
 
         // 查询条件
         LambdaQueryWrapper<ArticleDO> wrapper = Wrappers.<ArticleDO>lambdaQuery()
-                .like(StringUtils.isNotBlank(title), ArticleDO::getTitle, title.trim())
+                .like(StringUtils.isNotBlank(title), ArticleDO::getTitle, title)
                 .ge(Objects.nonNull(startDate), ArticleDO::getCreateTime, startDate)
                 .le(Objects.nonNull(endDate), ArticleDO::getCreateTime, endDate)
                 .orderByDesc(ArticleDO::getCreateTime);

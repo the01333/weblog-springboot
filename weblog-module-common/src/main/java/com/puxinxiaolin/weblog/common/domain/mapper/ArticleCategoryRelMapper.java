@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.puxinxiaolin.weblog.common.domain.dos.ArticleCategoryRelDO;
 
+import java.util.List;
+
 public interface ArticleCategoryRelMapper extends BaseMapper<ArticleCategoryRelDO> {
 
     /**
@@ -30,6 +32,7 @@ public interface ArticleCategoryRelMapper extends BaseMapper<ArticleCategoryRelD
 
     /**
      * 根据分类 ID 查询
+     *
      * @param categoryId
      * @return
      */
@@ -39,4 +42,14 @@ public interface ArticleCategoryRelMapper extends BaseMapper<ArticleCategoryRelD
                 .last("limit 1"));   // 不用全查出来，只要查到就说明有关联（提高查询性能）
     }
 
+    /**
+     * 根据文章 ID 集合批量查询
+     *
+     * @param articleIdList
+     * @return
+     */
+    default List<ArticleCategoryRelDO> selectByArticleIds(List<Long> articleIdList) {
+        return selectList(Wrappers.<ArticleCategoryRelDO>lambdaQuery()
+                .in(ArticleCategoryRelDO::getArticleId, articleIdList));
+    }
 }
