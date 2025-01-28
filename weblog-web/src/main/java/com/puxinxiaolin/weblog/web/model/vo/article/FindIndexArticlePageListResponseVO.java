@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -29,7 +29,7 @@ public class FindIndexArticlePageListResponseVO {
 
     private String summary;
 
-    private LocalDateTime createTime;
+    private LocalDate createData;
 
     /**
      * 文章分类
