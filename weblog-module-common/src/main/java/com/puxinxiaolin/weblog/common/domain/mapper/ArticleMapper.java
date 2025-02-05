@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.puxinxiaolin.weblog.common.domain.dos.ArticleDO;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public interface ArticleMapper extends BaseMapper<ArticleDO> {
@@ -33,6 +34,25 @@ public interface ArticleMapper extends BaseMapper<ArticleDO> {
                 .le(Objects.nonNull(endDate), ArticleDO::getCreateTime, endDate)
                 .orderByDesc(ArticleDO::getCreateTime);
 
+        return selectPage(page, wrapper);
+    }
+
+    /**
+     * 根据文章 ID 批量分页查询
+     *
+     * @param current
+     * @param size
+     * @param articleIds
+     * @return
+     */
+    default Page<ArticleDO> selectPageListByArticleIds(Long current, Long size, List<Long> articleIds) {
+        // 分页对象(查询第几页、每页多少数据)
+        Page<ArticleDO> page = new Page<>(current, size);
+
+        // 构建查询条件
+        LambdaQueryWrapper<ArticleDO> wrapper = Wrappers.<ArticleDO>lambdaQuery()
+                .in(ArticleDO::getId, articleIds)
+                .orderByDesc(ArticleDO::getCreateTime);
         return selectPage(page, wrapper);
     }
 
