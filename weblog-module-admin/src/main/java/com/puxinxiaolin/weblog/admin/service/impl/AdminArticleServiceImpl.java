@@ -82,7 +82,7 @@ public class AdminArticleServiceImpl implements AdminArticleService {
         articleCategoryRelDO.setArticleId(articleId);
         articleCategoryRelMapper.insert(articleCategoryRelDO);
 
-        // TODO 4. 保存文章关联的标签集合
+        // 4. 保存文章关联的标签集合
         List<String> tagList = publishArticleRequestVO.getTagList();
         insertTagList(articleId, tagList);
 
