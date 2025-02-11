@@ -1,8 +1,6 @@
 package com.puxinxiaolin.weblog.web.convert;
 
-import com.puxinxiaolin.weblog.common.domain.dos.CategoryDO;
 import com.puxinxiaolin.weblog.common.domain.dos.TagDO;
-import com.puxinxiaolin.weblog.web.model.vo.category.FindCategoryListResponseVO;
 import com.puxinxiaolin.weblog.web.model.vo.tag.FindTagListResponseVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
