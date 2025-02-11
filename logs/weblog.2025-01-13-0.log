@@ -1,0 +1,21 @@
+2025-01-13 20:17:00.468 [main] INFO  c.p.weblog.web.WeblogWebApplicationTests - Starting WeblogWebApplicationTests using Java 1.8.0_401 on 普信小林 with PID 20084 (started by 31496 in F:\项目\Java\weblog\weblog-springboot\weblog-web)
+2025-01-13 20:17:00.468 [main] INFO  c.p.weblog.web.WeblogWebApplicationTests - The following profiles are active: prod
+2025-01-13 20:17:01.574 [main] INFO  c.p.weblog.web.WeblogWebApplicationTests - Started WeblogWebApplicationTests in 1.527 seconds (JVM running for 2.27)
+2025-01-13 20:17:01.714 [main] INFO  c.p.weblog.web.WeblogWebApplicationTests - 这是一行 Info 级别日志
+2025-01-13 20:17:01.714 [main] WARN  c.p.weblog.web.WeblogWebApplicationTests - 这是一行 Warn 级别日志
+2025-01-13 20:17:01.714 [main] ERROR c.p.weblog.web.WeblogWebApplicationTests - 这是一行 Error 级别日志
+2025-01-13 20:17:01.714 [main] INFO  c.p.weblog.web.WeblogWebApplicationTests - 这是一行带有占位符日志，作者：程序员小林
+[TraceId: ] 2025-01-13 21:17:09.313 [main] INFO  com.puxinxiaolin.weblog.web.WeblogWebApplication - Starting WeblogWebApplication using Java 1.8.0_401 on 普信小林 with PID 25856 (F:\项目\Java\weblog\weblog-springboot\weblog-web\target\classes started by 31496 in F:\项目\Java\weblog\weblog-springboot)
+[TraceId: ] 2025-01-13 21:17:09.316 [main] INFO  com.puxinxiaolin.weblog.web.WeblogWebApplication - The following profiles are active: prod
+[TraceId: ] 2025-01-13 21:17:09.946 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[TraceId: ] 2025-01-13 21:17:09.953 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+[TraceId: ] 2025-01-13 21:17:09.953 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+[TraceId: ] 2025-01-13 21:17:10.008 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[TraceId: ] 2025-01-13 21:17:10.008 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 665 ms
+[TraceId: ] 2025-01-13 21:17:10.255 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[TraceId: ] 2025-01-13 21:17:10.261 [main] INFO  com.puxinxiaolin.weblog.web.WeblogWebApplication - Started WeblogWebApplication in 1.287 seconds (JVM running for 1.922)
+[TraceId: ] 2025-01-13 21:17:14.350 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[TraceId: ] 2025-01-13 21:17:14.350 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[TraceId: ] 2025-01-13 21:17:14.351 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+[TraceId: b8c00532-6cfc-4b23-bebb-02378de8eaca] 2025-01-13 21:17:14.451 [http-nio-8080-exec-1] INFO  c.p.weblog.common.aspect.ApiOperationLogAspect - ====== 请求开始: [测试接口], 入参: {"username":"YCc lin","gender":1}, 请求类: TestController, 请求方法: test =================================== 
+[TraceId: b8c00532-6cfc-4b23-bebb-02378de8eaca] 2025-01-13 21:17:14.459 [http-nio-8080-exec-1] INFO  c.p.weblog.common.aspect.ApiOperationLogAspect - ====== 请求结束: [测试接口], 耗时: 18ms, 出参: {"username":"YCc lin","gender":1} =================================== 
