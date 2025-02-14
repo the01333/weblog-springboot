@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.puxinxiaolin.weblog.common.domain.dos.ArticleDO;
+import com.puxinxiaolin.weblog.common.domain.dos.ArticlePublishCountDO;
+import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -93,5 +95,29 @@ public interface ArticleMapper extends BaseMapper<ArticleDO> {
                 .setSql("read_num = read_num + 1")
                 .eq(ArticleDO::getId, articleId));
     }
+
+    /**
+     * 查询所有记录的阅读量
+     *
+     * @return
+     */
+    default List<ArticleDO> selectAllReadNum() {
+        // 设置仅查询 read_num 字段
+        return selectList(Wrappers.<ArticleDO>lambdaQuery()
+                .select(ArticleDO::getReadNum));
+    }
+
+    /**
+     * 按日分组，并统计每日发布的文章数量（以一年内为准）
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    @Select("SELECT DATE(create_time) AS date, COUNT(*) AS count\n" +
+            "FROM t_article\n" +
+            "WHERE create_time >= '2024-11-11' AND create_time <= '2025-11-12'\n" +
+            "GROUP BY DATE(create_time)")
+    List<ArticlePublishCountDO> selectArticlePublishCount(LocalDate startDate, LocalDate endDate);
 
 }

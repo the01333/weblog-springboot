@@ -6,16 +6,24 @@ logging:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.159.55:3306/weblog?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://172.17.0.1:3306/weblog?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
     username: root
-    password: root
+    password: lyc220609
     hikari:
       minimum-idle: 5
-      max-pool-size: 10
+      max-pool-size: 20
       auto-commit: true
       idle-timeout: 30000
       pool-name: Weblog-HikariCP
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+#=================================================================
+# minio (上传图片需要)
+#=================================================================
+minio:
+  endpoint: http://121.40.174.201:9000
+  accessKey: puxinxiaolin
+  secretKey: puxinxiaolin
+  bucketName: weblog
 

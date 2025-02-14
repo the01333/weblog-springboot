@@ -12,15 +12,13 @@ import com.puxinxiaolin.weblog.web.model.vo.archive.FindArchiveArticlePageListRe
 import com.puxinxiaolin.weblog.web.model.vo.archive.FindArchiveArticleResponseVO;
 import com.puxinxiaolin.weblog.web.service.ArchiveService;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.time.YearMonth;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,7 +42,7 @@ public class ArchiveServiceImpl implements ArchiveService {
         Page<ArticleDO> page = articleMapper.selectPageList(null, current, size, null, null);
         List<ArticleDO> articleDOList = page.getRecords();
 
-        List<FindArchiveArticlePageListResponseVO> findArchiveArticlePageListResponseVOList = Lists.newArrayList();
+        List<FindArchiveArticlePageListResponseVO> findArchiveArticlePageListResponseVOList = new ArrayList<>();
         if (!CollectionUtils.isEmpty(articleDOList)) {
             // DO -> VO
             List<FindArchiveArticleResponseVO> findArchiveArticleResponseVOList = articleDOList.stream()
