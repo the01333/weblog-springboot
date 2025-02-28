@@ -120,4 +120,6 @@ public interface ArticleMapper extends BaseMapper<ArticleDO> {
             "GROUP BY DATE(create_time)")
     List<ArticlePublishCountDO> selectArticlePublishCount(LocalDate startDate, LocalDate endDate);
 
+    @Select("SELECT * FROM t_article WHERE title LIKE concat('%', #{title}, '%')")
+    List<ArticleDO> selectByTitleLike(String title);
 }

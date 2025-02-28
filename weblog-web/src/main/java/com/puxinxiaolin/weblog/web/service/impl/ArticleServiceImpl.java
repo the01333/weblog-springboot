@@ -29,25 +29,18 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class ArticleServiceImpl implements ArticleService {
-
     @Resource
     private ArticleMapper articleMapper;
-
     @Resource
     private CategoryMapper categoryMapper;
-
     @Resource
     private ArticleCategoryRelMapper articleCategoryRelMapper;
-
     @Resource
     private TagMapper tagMapper;
-
     @Resource
     private ArticleTagRelMapper articleTagRelMapper;
-
     @Resource
     private ArticleContentMapper articleContentMapper;
-
     @Resource
     private ApplicationEventPublisher applicationEventPublisher;
 
@@ -209,6 +202,14 @@ public class ArticleServiceImpl implements ArticleService {
         applicationEventPublisher.publishEvent(new ReadArticleEvent(this, articleId));
 
         return Response.success(findArticleDetailResponseVO);
+    }
+
+    @Override
+    public Response findArticleByLikeTitle(FindArticleByTitleRequestVO findArticleByTitleRequestVO) {
+        String title = findArticleByTitleRequestVO.getTitle();
+        List<ArticleDO> articles = articleMapper.selectByTitleLike(title);
+
+        return Response.success(articles);
     }
 
 }

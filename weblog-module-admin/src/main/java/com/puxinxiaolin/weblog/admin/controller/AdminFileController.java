@@ -5,6 +5,7 @@ import com.puxinxiaolin.weblog.common.aspect.ApiOperationLog;
 import com.puxinxiaolin.weblog.common.utils.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ public class AdminFileController {
     @PostMapping("/upload")
     @ApiOperation(value = "上传文件")
     @ApiOperationLog(description = "上传文件")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Response uploadFile(@RequestParam MultipartFile file) {
         return adminFileService.uploadFile(file);
     }

@@ -22,7 +22,8 @@ spring:
 # minio (上传图片需要)
 #=================================================================
 minio:
-  endpoint: http://121.40.174.201:9000
+#  endpoint: http://121.40.174.201:9000
+  endpoint: https://img.puxinxiaolin.top
   accessKey: puxinxiaolin
   secretKey: puxinxiaolin
   bucketName: weblog

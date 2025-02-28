@@ -1,6 +1,7 @@
 package com.puxinxiaolin.weblog.web.service;
 
 import com.puxinxiaolin.weblog.common.utils.Response;
+import com.puxinxiaolin.weblog.web.model.vo.article.FindArticleByTitleRequestVO;
 import com.puxinxiaolin.weblog.web.model.vo.article.FindArticleDetailRequestVO;
 import com.puxinxiaolin.weblog.web.model.vo.article.FindIndexArticlePageListRequestVO;
 
@@ -22,4 +23,11 @@ public interface ArticleService {
      */
     Response findArticleDetail(FindArticleDetailRequestVO findArticleDetailRequestVO);
 
+    /**
+     * 根据文章标题模糊查询
+     *
+     * @param requestVO
+     * @return
+     */
+    Response findArticleByLikeTitle(FindArticleByTitleRequestVO requestVO);
 }

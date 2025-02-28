@@ -10,6 +10,7 @@ import com.puxinxiaolin.weblog.common.utils.PageResponse;
 import com.puxinxiaolin.weblog.common.utils.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,7 @@ public class AdminTagController {
     @PostMapping("/add")
     @ApiOperation(value = "添加标签")
     @ApiOperationLog(description = "添加标签")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Response addTag(@Validated @RequestBody AddTagRequestVO addTagRequestVO) {
         return adminTagService.addTag(addTagRequestVO);
     }
@@ -43,6 +45,7 @@ public class AdminTagController {
     @PostMapping("/delete")
     @ApiOperation(value = "删除标签")
     @ApiOperationLog(description = "删除标签")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Response deleteTag(@Validated @RequestBody DeleteTagRequestVO deleteTagRequestVO) {
         return adminTagService.deleteTag(deleteTagRequestVO);
     }

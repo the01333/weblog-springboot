@@ -3,6 +3,7 @@ package com.puxinxiaolin.weblog.web.controller;
 import com.puxinxiaolin.weblog.common.aspect.ApiOperationLog;
 
 import com.puxinxiaolin.weblog.common.utils.Response;
+import com.puxinxiaolin.weblog.web.model.vo.article.FindArticleByTitleRequestVO;
 import com.puxinxiaolin.weblog.web.model.vo.article.FindArticleDetailRequestVO;
 import com.puxinxiaolin.weblog.web.model.vo.article.FindIndexArticlePageListRequestVO;
 import com.puxinxiaolin.weblog.web.service.ArticleService;
@@ -35,6 +36,13 @@ public class ArticleController {
     @ApiOperationLog(description = "获取文章详情")
     public Response findArticleDetail(@RequestBody FindArticleDetailRequestVO findArticleDetailRequestVO) {
         return articleService.findArticleDetail(findArticleDetailRequestVO);
+    }
+
+    @PostMapping("/findByLikeTitle")
+    @ApiOperation(value = "根据标题模糊查找文章")
+    @ApiOperationLog(description = "根据标题模糊查找文章")
+    public Response findArticleByLikeTitle(@RequestBody FindArticleByTitleRequestVO requestVO) {
+        return articleService.findArticleByLikeTitle(requestVO);
     }
 
 }
